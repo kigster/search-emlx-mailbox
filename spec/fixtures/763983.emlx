@@ -1,0 +1,129 @@
+4994
+Delivered-To: kig@dropinmedia.com
+Received: by 10.181.13.1 with SMTP id q1cs588522bki;
+        Sun, 28 Dec 2008 14:05:45 -0800 (PST)
+Received: by 10.210.105.20 with SMTP id d20mr15245809ebc.84.1230501943170;
+        Sun, 28 Dec 2008 14:05:43 -0800 (PST)
+Return-Path: <soldatov@sertolovo.ru>
+Received: from mail.sertolovo.ru (mail.sertolovo.ru [85.249.160.71])
+        by mx.google.com with ESMTP id 7si48084222ewy.76.2008.12.28.14.05.41;
+        Sun, 28 Dec 2008 14:05:42 -0800 (PST)
+Received-SPF: pass (google.com: best guess record for domain of soldatov@sertolovo.ru designates 85.249.160.71 as permitted sender) client-ip=85.249.160.71;
+Authentication-Results: mx.google.com; spf=pass (google.com: best guess record for domain of soldatov@sertolovo.ru designates 85.249.160.71 as permitted sender) smtp.mail=soldatov@sertolovo.ru
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.sertolovo.ru (Postfix) with ESMTP id 408C191336;
+	Mon, 29 Dec 2008 01:05:41 +0300 (MSK)
+X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on mail.sertolovo.ru
+X-Spam-Level: *
+X-Spam-Status: No, score=1.9 required=6.0 tests=DNS_FROM_RFC_ABUSE,
+	DNS_FROM_RFC_POST autolearn=disabled version=3.1.0
+Received: from soldatov.sertolovo.ru (unknown [91.201.230.36])
+	by mail.sertolovo.ru (Postfix) with ESMTP id 8B605912FC;
+	Mon, 29 Dec 2008 01:05:38 +0300 (MSK)
+Message-ID: <4957F82F.5020401@sertolovo.ru>
+Date: Mon, 29 Dec 2008 01:05:35 +0300
+From: Vyacheslav Soldatov <soldatov@sertolovo.ru>
+User-Agent: Thunderbird 2.0.0.18 (X11/20081119)
+MIME-Version: 1.0
+To: Konstantin Gredeskoul <kig@dropinmedia.com>
+CC: Tony Rose <tony@dropinmedia.com>, Mike Hannegan <mike@pinkfrosty.com>
+Subject: Re: Changes on demo
+References: <0F87D9FF-FA47-42E1-80B4-6317548C1F3A@dropinmedia.com>
+In-Reply-To: <0F87D9FF-FA47-42E1-80B4-6317548C1F3A@dropinmedia.com>
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Hi, Konstantin
+
+-- The session code is fully removed from trunk now
+-- The SQL to add all Carriers for OpenMarket has been corrected to not 
+duplicate AT&T
+
+BR, Vyacheslav
+
+Konstantin Gredeskoul wrote:
+> Guys,
+>
+> Our demo server currently contains several new features, so I wanted 
+> to outline them so we all know what to expect when it goes to production:
+>
+> 1) optimized scheduler.  This is the biggest change, basically instead 
+> of creating a scheduler for each individual subscriber we create on 
+> scheduler per unique instance of a schedule within a campaign. When 
+> the schedule trigger fires, we lookup all users with that schedule 
+> from DB and call the application (MMS, etc) for each one. For example 
+> for PinkFrosty, there at 15K subscribers, but only 78 unique 
+> schedules, so this is a huge savings in terms of campaign startup and 
+> shutdown time, as well as memory footprint.  This code is currently 
+> testing on demo, and I am watching logs to make sure they work as 
+> expected.
+>
+> 2) support for dynamic links in WAP pages.   Basically you can now 
+> insert a conditional statement like this one into WAP pages to avoid 
+> links to campaigns they are already subscribed to:
+>
+> <ww:if test="!alreadySubscribedTo(1212)">
+> ....
+> </ww:if>
+>
+> 3) experimental feature - boost auto-sensing.  Right now our WAP pages 
+> hardcode boost carrier ID 7, which means these pages can not be reused 
+> for other off deck experience. If this works as design, Boost will be 
+> auto-detected based on the x-up-subno request header matching 
+> adc.nexteldata.net.  If this works, we should be able to remove 
+> x.carrierId=7 from all links and make these pages cross carrier.
+>
+> 4) Sessions rewrite is in progress, but I do not believe any existing 
+> functionality has been affected.  I think we should continue 
+> developing session stuff on development branch to minimize risk of 
+> breaking things next time we release, before Sessions may be 
+> finished.  Vyacheslav, can you please make sure new session code does 
+> not break trunk?  Thx!!!
+>
+> 5) OpenMarket SMS connector, and a working test shortcode.  This 
+> appears to be mostly working, but we need to run SQL to add all 
+> Carriers, which I have not done yet, as I am waiting on Vyacheslav to 
+> remove Cingular Blue and remap operatorID to existing carrier "AT&T".
+>
+> 6) Updated Logging, with separate error file for errors.
+>
+> On another note, I have identified that we are incorrectly reporting 
+> our revenues, because when we fail to deliver some premium message and 
+> retry is enabled, we may reverse the billing (subtract the amount) 
+> twice or more.  I am currently working on changing how we record 
+> billing history, and hoping that after that we'll get more accurate 
+> numbers, including back dating them to previous months.
+>
+> That's all :)
+>
+> __
+>
+> Konstantin Gredeskoul
+> CTO and Co-Founder
+> Drop In Media LLC - www.dropinmedia.com
+> Mobile Application Development and Hosting
+> Toll Free (USA): (800) 680 3048
+> Email: kig@dropinmedia.com
+>
+>
+>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>date-sent</key>
+	<real>1230501935</real>
+	<key>flags</key>
+	<integer>33815685</integer>
+	<key>original-mailbox</key>
+	<string>pop://kig%40dropinmedia.com@pop.gmail.com/</string>
+	<key>remote-id</key>
+	<string>GmailId11e7fa196e38899f</string>
+	<key>sender</key>
+	<string>Vyacheslav Soldatov &lt;soldatov@sertolovo.ru&gt;</string>
+	<key>subject</key>
+	<string>Re: Changes on demo</string>
+	<key>to</key>
+	<string>Konstantin Gredeskoul &lt;kig@dropinmedia.com&gt;</string>
+</dict>
+</plist>

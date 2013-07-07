@@ -1,0 +1,16 @@
+common: &common
+  encoding: unicode
+  pool: 4
+  adapter: postgresql
+  username: postgres
+  password: 
+  host: 127.0.0.1
+  port: 5432
+
+development:
+  <<: *common
+  database: docsearch_development
+
+test:
+  database: docsearch_development
+
