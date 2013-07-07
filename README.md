@@ -1,7 +1,7 @@
-== README
+## Email Search 
 
 Email Search application for loading a directory containing lots of 
-email message file in the *.emlx (Apple) format, and then using 
+email message file in the \*.emlx (Apple) format, and then using 
 Solr to search.
 
 ## Contributing
