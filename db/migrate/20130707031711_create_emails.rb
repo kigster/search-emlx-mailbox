@@ -2,10 +2,10 @@ class CreateEmails < ActiveRecord::Migration
   def change
     create_table :emails do |t|
       t.text :header
-      t.string :from
-      t.string :to
-      t.string :cc
-      t.string :subject
+      t.text :from
+      t.text :to
+      t.text :cc
+      t.text :subject
       t.text :body
       t.datetime :received
     end

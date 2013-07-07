@@ -1,0 +1,156 @@
+4862
+Delivered-To: kig@histpercorp.com
+Received: by 10.181.13.1 with SMTP id q1cs27395bki;
+        Thu, 18 Dec 2008 16:32:11 -0800 (PST)
+Received: by 10.142.158.17 with SMTP id g17mr1050153wfe.120.1229646730096;
+        Thu, 18 Dec 2008 16:32:10 -0800 (PST)
+Return-Path: <james@histpercorp.com>
+Received: from rv-out-0506.google.com (rv-out-0506.google.com [209.85.198.230])
+        by mx.google.com with ESMTP id 24si5691103wff.37.2008.12.18.16.32.08;
+        Thu, 18 Dec 2008 16:32:09 -0800 (PST)
+Received-SPF: pass (google.com: domain of james@histpercorp.com designates 209.85.198.230 as permitted sender) client-ip=209.85.198.230;
+Authentication-Results: mx.google.com; spf=pass (google.com: domain of james@histpercorp.com designates 209.85.198.230 as permitted sender) smtp.mail=james@histpercorp.com
+Received: by rv-out-0506.google.com with SMTP id k40so677529rvb.29
+        for <kig@histpercorp.com>; Thu, 18 Dec 2008 16:32:08 -0800 (PST)
+Received: by 10.142.142.14 with SMTP id p14mr1044207wfd.202.1229646727491;
+        Thu, 18 Dec 2008 16:32:07 -0800 (PST)
+Return-Path: <james@histpercorp.com>
+Received: from ?192.168.1.103? (c-71-204-181-113.hsd1.ca.comcast.net [71.204.181.113])
+        by mx.google.com with ESMTPS id 30sm7138155wfg.45.2008.12.18.16.32.06
+        (version=TLSv1/SSLv3 cipher=RC4-MD5);
+        Thu, 18 Dec 2008 16:32:06 -0800 (PST)
+Cc: "mike@assswipesters.com Poopegan" <mike@assswipesters.com>
+Message-Id: <DDE2E629-C4D6-4B3C-8986-0AC780A7E3BD@histpercorp.com>
+From: James Bond <james@histpercorp.com>
+To: Konstantin Gredeskoul <kig@histpercorp.com>
+In-Reply-To: <069C2E8F-FAA6-4991-B55F-509A8BF0C96F@histpercorp.com>
+Content-Type: multipart/mixed; boundary=Apple-Mail-100-83938193
+Mime-Version: 1.0 (Apple Message framework v930.3)
+Subject: Re: Reverse charges and current mblox premium success rate
+Date: Thu, 18 Dec 2008 16:32:04 -0800
+References: <069C2E8F-FAA6-4991-B55F-509A8BF0C96F@histpercorp.com>
+X-Mailer: Apple Mail (2.930.3)
+
+
+--Apple-Mail-100-83938193
+Content-Type: text/plain;
+	charset=US-ASCII;
+	format=flowed;
+	delsp=yes
+Content-Transfer-Encoding: 7bit
+
+Hey,
+
+I just wrapped up my call with Alltel for the launch of blipback  
+application, and mentioned our MMS alerts to her.  She is not in  
+charge of WAP, but Jacyln who IS in charge of WAP is in her group and  
+they are friends.  During our call, she mentioned how much she hates  
+waking up at 6 am every day for her job and said she wished she had  
+one of those cool sunrise clocks... here is what is being delivered 1  
+day delivery to her desk tomorrow!
+
+Delivery estimate: December 19, 2008
+
+--Apple-Mail-100-83938193
+Content-Disposition: inline;
+	filename=health_and_beauty_display_on_website-blue-icon._V47082206_.gif
+Content-Type: image/gif;
+	x-unix-mode=0666;
+	name="health_and_beauty_display_on_website-blue-icon._V47082206_.gif"
+Content-Transfer-Encoding: base64
+
+R0lGODlhEgASAMQbAJOnyv///6++2PH0+KKz0b3J35Soy6S00pmsze7y9+Pp8ff5+8vV5d3j7pir
+zN7k7/T2+uHm8Jutzvn6/Nzj7tvi7qm51Zapy8zW5pmrzb7K3////wAAAAAAAAAAAAAAACH5BAEA
+ABsALAAAAAASABIAAAWO4CaKAyNYlsAMY7sthQHMtFEs7kDQPE2wosmhRwQQJiIND6EIBBQIXmGT
+kNEuDWfjwjMkMLSMQ1JxViSODA0joEUoD4gT8qBEaILhzMnvB2gHegB+foBtM29xc3V3MwJgM2Jk
+ZmhqMxhVPFhaXDUJGwVLTU9RNFMbEztFPEcjOqszPy4wqzcuriYoKkAjIQA7
+
+--Apple-Mail-100-83938193
+Content-Type: text/plain;
+	charset=US-ASCII;
+	format=flowed;
+	delsp=yes
+Content-Transfer-Encoding: 7bit
+
+
+
+1
+"BioBrite Sunrise Clock Radio, Platinum"
+Health and Beauty; $149.95
+
+james
+
+--  
+==
+James Bond
+Co-Founder / Business Development
+Drop In Media .com / Ojingo Labs .com
+c: +1 650 504 5154
+o: +1 800 680 3048
+
+This email message is for the sole use of
+the intended recipient(s) and may contain
+confidential and privileged information.
+Any unauthorized review, use, disclosure
+or distribution is prohibited. If you are not
+the intended recipient, please contact the
+sender by reply email and destroy all copies
+of the original message.
+
+
+
+
+On Dec 18, 2008, at 4:14 PM, Konstantin Gredeskoul wrote:
+
+> So now with updated logging it's pretty easy to calculate number of  
+> successful premium mblox deliveries, as well as failures, because  
+> failures create reverse billing events.
+>
+> > grep "tariff 100, on 81595" histpercorp.log  | wc -l
+> 16438
+>
+> So this is total number of attempted messages today: 16.5K
+>
+> > grep reverse histpercorp.log | wc -l
+> 11329
+>
+> That's failures - 11K.
+>
+> This is 69% failure rate... Just shows how much we need another  
+> carrier contract to really build this into sustainable business,  
+> because Boost along is just going to be capped at a certain number  
+> no matter what because of the types of customers they have.
+>
+> K
+> --
+> Konstantin Gredeskoul
+> CTO and Co-Founder
+> Drop In Media LLC - www.histpercorp.com
+> Mobile Application Development and Hosting
+> Toll Free (USA): (800) 680 3048
+> Email: kig@histpercorp.com
+>
+>
+
+
+--Apple-Mail-100-83938193--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>date-sent</key>
+	<real>1229646724</real>
+	<key>flags</key>
+	<integer>33752193</integer>
+	<key>original-mailbox</key>
+	<string>pop://kig%40histpercorp.com@pop.gmail.com/</string>
+	<key>remote-id</key>
+	<string>GmailId11e4ca81077504f2</string>
+	<key>sender</key>
+	<string>James Bond &lt;james@histpercorp.com&gt;</string>
+	<key>subject</key>
+	<string>Re: Reverse charges and current mblox premium success rate</string>
+	<key>to</key>
+	<string>Konstantin Gredeskoul &lt;kig@histpercorp.com&gt;</string>
+</dict>
+</plist>

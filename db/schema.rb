@@ -11,19 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130707031711) do
+ActiveRecord::Schema.define(version: 20130707042518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "emails", force: true do |t|
     t.text     "header"
-    t.string   "from"
-    t.string   "to"
-    t.string   "cc"
-    t.string   "subject"
+    t.text     "from"
+    t.text     "to"
+    t.text     "cc"
+    t.text     "subject"
     t.text     "body"
     t.datetime "received"
   end
+
+  add_index "emails", ["from", "received"], name: "index_emails_on_from_and_received", using: :btree
+  add_index "emails", ["received"], name: "index_emails_on_received", using: :btree
 
 end
