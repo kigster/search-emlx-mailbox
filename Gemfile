@@ -4,10 +4,13 @@ gem 'rails', '4.0.0'
 gem 'pg'
 gem 'ruby-progressbar'
 
+gem 'sunspot', '2.0.0', :git => "https://github.com/sunspot/sunspot.git"
 gem 'sunspot_rails'
-gem 'sunspot_solr'
+gem 'unicorn'
 
 group :development, :test do
+  gem 'sunspot_solr', '2.0.0'
+  gem 'foreman'
   gem 'rspec-rails', '~> 2.0'
   gem 'guard-rspec'
 end
