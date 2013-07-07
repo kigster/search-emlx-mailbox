@@ -15,3 +15,7 @@ test:
   <<: *common
   database: emailsearch_test
 
+production:
+  <<: *common
+  database: emailsearch_production
+

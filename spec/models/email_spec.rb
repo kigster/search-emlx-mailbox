@@ -29,10 +29,16 @@ describe Email do
     email.save!
   end
 
-  it "should load multiple emails from directory structure" do
-    expect do
-      Email.create_from_dir(email_folder)
-    end.to change { Email.count }.by(2)
+  it "should not explode when date is invalid" do
+    email = Email.from_file("spec/fixtures/763983-badtime.emlx")
+    email.received.should be_nil
+    email.save!
+  end
+
+  it "should not load file bigger than max size" do
+    allow(File).to receive(:size).and_return(20_000_000)
+    email = Email.from_file("spec/fixtures/763983.emlx")
+    email.should be_nil
   end
 
 end

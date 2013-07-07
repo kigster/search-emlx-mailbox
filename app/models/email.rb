@@ -2,6 +2,7 @@ require 'ruby-progressbar'
 
 class Email < ActiveRecord::Base
   EXTENSION = "emlx"
+  MAX_FILE_SIZE = 10_000_000
 
   searchable do
     text :to, :from, :subject, :body
@@ -24,6 +25,7 @@ class Email < ActiveRecord::Base
 
 
   def self.from_file(filename)
+    return if File.size(filename) > MAX_FILE_SIZE
     content = File.read(filename).encode!('UTF-8', 'UTF-8', :invalid => :replace, :replace => '').unpack("C*").pack("U*")
     email = self.new
     email.header, email.body = content.split(/\n\n/, 2)
@@ -44,7 +46,8 @@ class Email < ActiveRecord::Base
     files = Dir.glob(pattern)
     pb = self.progress_bar(files.size)
     files.each do |file|
-      self.from_file(file).save!
+      email = self.from_file(file)
+      email.save! if email
       pb.increment if pb
     end
     pb.finish if pb
