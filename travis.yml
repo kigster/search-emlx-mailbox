@@ -1,0 +1,11 @@
+language: ruby
+rvm:
+  - 2.0.0
+script: "bundle exec rspec"
+notifications:
+  email:
+    recipients:
+      - kigster@gmail.com
+    on_success: never
+    on_failure: always
+

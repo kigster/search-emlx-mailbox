@@ -1,8 +1,10 @@
 ## Email Search 
 
-Email Search application for loading a directory containing lots of 
-email message file in the \*.emlx (Apple) format, and then using 
-Solr to search.
+[![Build status](https://secure.travis-ci.org/kigster/email-search.png)](http://travis-ci.org/kigster/email-search)
+
+Email Search is a rails application for loading a directory containing lots of 
+email message files in the \*.emlx (Apple) format, and then using 
+Solr to search them.
 
 ## Contributing
 
