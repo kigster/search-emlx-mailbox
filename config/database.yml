@@ -9,9 +9,9 @@ common: &common
 
 development:
   <<: *common
-  database: docsearch_development
+  database: emailsearch_development
 
 test:
   <<: *common
-  database: docsearch_test
+  database: emailsearch_test
 
