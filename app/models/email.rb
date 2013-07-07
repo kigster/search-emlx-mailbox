@@ -3,8 +3,12 @@ require 'ruby-progressbar'
 class Email < ActiveRecord::Base
   EXTENSION = "emlx"
 
-  class << self
+  searchable do
+    text :to, :from, :subject, :body
+    time :received
+  end
 
+  class << self
     @progress_bar_enabled = true
     def progress_bar(size)
       @progress_bar_enabled ?

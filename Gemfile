@@ -3,9 +3,11 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 gem 'pg'
 gem 'ruby-progressbar'
+
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'guard-rspec'
+  gem 'sunspot_solr'
 end
 
 # Use SCSS for stylesheets

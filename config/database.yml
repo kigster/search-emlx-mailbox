@@ -12,5 +12,6 @@ development:
   database: docsearch_development
 
 test:
-  database: docsearch_development
+  <<: *common
+  database: docsearch_test
 

@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Email do
+
   let(:email_file) { "spec/fixtures/763983.emlx" }
   let(:email_folder) { "spec/fixtures/folder/" }
 
@@ -25,7 +26,7 @@ describe Email do
   it "should load multiple emails from directory structure" do
     expect do
       Email.create_from_dir(email_folder)
-    end.to change{Email.count}.by(2)
+    end.to change { Email.count }.by(2)
   end
 
 end
