@@ -4,10 +4,12 @@ gem 'rails', '4.0.0'
 gem 'pg'
 gem 'ruby-progressbar'
 
+gem 'sunspot_rails'
+gem 'sunspot_solr'
+
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'guard-rspec'
-  gem 'sunspot_solr'
 end
 
 # Use SCSS for stylesheets
@@ -36,7 +38,6 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'sunspot_rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

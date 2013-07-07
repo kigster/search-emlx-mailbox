@@ -1,4 +1,13 @@
+task :reset do
+  Rake::Task["db:reset"].invoke
+  Rake::Task["emails:reset_solr"].invoke
+end
+
 namespace :emails do
+  task :reset_solr do
+    Sunspot.remove_all!
+  end
+
   namespace :load do
     desc "Load all emails from a directory hierarchy"
     task :directory, [:directory] => [:environment] do |t, args|
