@@ -1,6 +1,9 @@
 %h2
-  = link_to email.file_name_with_extension, email_download_path(email)
-
+  = email.file_name_with_extension
+%h4
+  = link_to "download", email_download_path(email)
+  |
+  = link_to "permalink", email_path(email), onclick: "window.open(this.href, '#{email.file_name}', 'height=1200, width=800');return false;" 
 .email-contents
   %table#email-contents.table.table-bordered
     %thead
