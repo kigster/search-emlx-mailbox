@@ -4,6 +4,9 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+**.DS_Store
+**.swp
+
 # Ignore bundler config.
 /.bundle
 
@@ -17,3 +20,10 @@
 /.idea/*
 /solr
 *.pid
+public/assets/*
+
+# Ignore .rvmrc
+.rvmrc
+# Latest rvm renames .rvmrc to these two
+.ruby-gemset
+.ruby-version

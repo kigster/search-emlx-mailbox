@@ -1,0 +1,34 @@
+.email-search
+  %form#email-search-form(class="well form-search" action="#{emails_search_path}")
+    %input(type="text" autofocus="autofocus" name="query"  class="input-medium search-query" placeholder="Keyword" value="#{params[:query]}")
+    %input.btn.btn-success(type="submit" class="button wb-success" value="search")
+
+  %p
+    Total docs matched:
+    = @search.results.total_count if @search
+  %p.paginator
+    = paginate @search.results if @search
+
+  %table#products.table.table-bordered
+    %thead
+      %tr
+        %th ID
+        %th Sent
+        %th From
+        %th Subject
+        %th Body
+    %tbody
+      - @emails.each do |email|
+        %tr
+          %td
+            = email.id
+          %td
+            = email.received
+          %td
+            = email.from
+          %td
+            = email.subject
+          %td
+            = email.body[0..1000]
+
+

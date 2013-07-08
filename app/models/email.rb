@@ -5,7 +5,10 @@ class Email < ActiveRecord::Base
   MAX_FILE_SIZE = 10_000_000
 
   searchable do
-    text :to, :from, :subject, :body
+    string :to, :from, :subject
+    text :body do
+      body[0..10_000]
+    end
     time :received
   end
 

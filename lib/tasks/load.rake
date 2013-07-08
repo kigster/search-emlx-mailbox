@@ -4,7 +4,7 @@ task :reset do
 end
 
 namespace :emails do
-  task :reset_solr do
+  task :reset_solr => [:environment] do
     Sunspot.remove_all!
   end
 

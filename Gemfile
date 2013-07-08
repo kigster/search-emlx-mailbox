@@ -7,6 +7,9 @@ gem 'ruby-progressbar'
 gem 'sunspot', '2.0.0', :git => "https://github.com/sunspot/sunspot.git"
 gem 'sunspot_rails'
 gem 'unicorn'
+gem 'haml-rails'
+gem 'kaminari'
+gem "twitter-bootstrap-rails"
 
 group :development, :test do
   gem 'sunspot_solr', '2.0.0'
