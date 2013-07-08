@@ -4,7 +4,7 @@ before_script:
 language: ruby
 rvm:
   - 2.0.0
-script: "RAILS_ENV=test TEST_SOLR=true bundle exec rake spec"
+script: "bundle exec rake spec"
 notifications:
   email:
     recipients:
