@@ -13,6 +13,7 @@ gem 'therubyracer'
 gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem 'kaminari-bootstrap'
+gem 'rubyzip', :require => ['zip/zip', 'zip/zipfilesystem']
 
 group :development, :test do
   gem 'sunspot_solr', '2.0.0'

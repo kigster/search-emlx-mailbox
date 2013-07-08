@@ -1,5 +1,5 @@
 .row-fluid
-  .span6
+  .span7
     .email-search
       %form#email-search-form(class="well form-search" action="#{emails_search_path}")
         .form-group
@@ -10,18 +10,19 @@
           %input(type="text" autofocus="autofocus" name="query"  class="input-long search-query" placeholder="Matches..." value="#{params[:query]}")
           %p.small
             Use + or - to exclude or include a term, for example "pizza -meat"
-        %input.btn.btn-success(type="submit" class="button btn-large wb-success" value="search")
+        %input.btn.btn-large.btn-success(type="submit" id="search" value="search")
+        %input.btn.btn-large.btn-warning(type="submit" id="download" name="download" value="download")
 
       %p
         Total docs matched:
-        = @search.results.total_count if @search
+        - if @search
+          = @search.results.total_count
       %p
         = paginate @search.results if @search
 
       %table#email-results.table.table-condensed.table-hover.table-bordered
         %thead
           %tr
-            %th ID
             %th File
             %th Sent
             %th From/To
@@ -30,11 +31,9 @@
           - @emails.each do |email|
             %tr(class="email-summary" data-email-id="#{email.id}")
               %td
-                = email.id
-              %td
                 = link_to email.file_name_with_extension, email_download_path(email)
               %td.nowrap
-                = email.received.in_time_zone("Pacific Time (US & Canada)").to_s(:db)
+                = email.received.in_time_zone("Pacific Time (US & Canada)").to_date.to_s
               %td
                 From:
                 = email.from
@@ -43,7 +42,11 @@
                 = email.to
               %td
                 = email.subject
-  .span6
+
+      %p
+        = paginate @search.results if @search
+
+  .span5
     #email-content
 
 

@@ -7,7 +7,7 @@ $(document).on "mouseenter", ".email-summary td", (e) ->
   parent = $(e.target).closest(".email-summary")
   email_id = parent.data('email-id')
   $.ajax
-      url: "/emails/#{email_id}?hello"
+      url: "/emails/#{email_id}"
       type: 'GET'
       dataType: 'script'
 

@@ -14,4 +14,8 @@ class Email < ActiveRecord::Base
   def file_name_with_extension
     "#{file_name}.#{EmailLoader::EXTENSION}"
   end
+
+  def full_body
+    header + "\n\n" + body
+  end
 end

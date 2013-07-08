@@ -44,8 +44,16 @@ pre {
 
 #email-search-form {
   height: 80px;
+  min-width: 800px;
 }
 
 .small {
   font-size: 12px;
+}
+
+#search {
+  margin-left: 40px;
+}
+#download {
+  margin-left: 40px;
 }
