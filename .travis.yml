@@ -4,7 +4,7 @@ before_script:
 language: ruby
 rvm:
   - 2.0.0
-script: "TESTS_SOLR=true bundle exec rspec"
+script: "TEST_SOLR=true bundle exec rspec"
 notifications:
   email:
     recipients:
