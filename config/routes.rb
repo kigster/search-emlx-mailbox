@@ -1,5 +1,8 @@
 Docsearch::Application.routes.draw do
-  get 'search/emails', as: :emails_search
+  get 'emails'              => 'search#emails',  as: :emails_search
+  get 'emails/:id'          => 'search#show', as: :email
+  get 'emails/download/:id' => 'search#download', as: :email_download
+
   root 'search#emails'
 
   # The priority is based upon order of creation: first created -> highest priority.

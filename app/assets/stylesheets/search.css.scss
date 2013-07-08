@@ -4,9 +4,48 @@
 body {
 }
 
-table {
+table#email-results {
   td {
-    white-space: nowrap;
     font-size: 12px;
+    cursor: pointer;
   }
+  td.nowrap {
+    white-space: nowrap;
+  }
+}
+
+pre {
+  font-size: 11px;
+}
+
+.email-body {
+  max-height: 800px;
+}
+.email-header {
+  max-height: 200px;
+}
+
+.form-group {
+  display: inline-block;
+  width: 250px;
+  input {
+    margin-bottom: 13px;
+    float: left;
+  }
+  float: left;
+}
+
+.field-select {
+  float: left;
+  font-size: 14px;
+  width: 100px;
+  margin-right: 20px;
+}
+
+#email-search-form {
+  height: 80px;
+}
+
+.small {
+  font-size: 12px;
 }

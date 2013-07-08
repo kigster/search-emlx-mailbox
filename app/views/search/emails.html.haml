@@ -1,34 +1,49 @@
-.email-search
-  %form#email-search-form(class="well form-search" action="#{emails_search_path}")
-    %input(type="text" autofocus="autofocus" name="query"  class="input-medium search-query" placeholder="Keyword" value="#{params[:query]}")
-    %input.btn.btn-success(type="submit" class="button wb-success" value="search")
+.row-fluid
+  .span6
+    .email-search
+      %form#email-search-form(class="well form-search" action="#{emails_search_path}")
+        .form-group
+          =date_field_tag :date_from, params[:date_from], :as => :string
+          =date_field_tag :date_to, params[:date_to], :as => :string
+        =select_tag(:fields, options_for_select(%w(from to subject body), params[:fields]), { class: "field-select", multiple: true, size: 4 })
+        .form-group
+          %input(type="text" autofocus="autofocus" name="query"  class="input-long search-query" placeholder="Matches..." value="#{params[:query]}")
+          %p.small
+            Use + or - to exclude or include a term, for example "pizza -meat"
+        %input.btn.btn-success(type="submit" class="button btn-large wb-success" value="search")
 
-  %p
-    Total docs matched:
-    = @search.results.total_count if @search
-  %p.paginator
-    = paginate @search.results if @search
+      %p
+        Total docs matched:
+        = @search.results.total_count if @search
+      %p
+        = paginate @search.results if @search
 
-  %table#products.table.table-bordered
-    %thead
-      %tr
-        %th ID
-        %th File
-        %th Sent
-        %th From
-        %th Subject
-    %tbody
-      - @emails.each do |email|
-        %tr
-          %td
-            = email.id
-          %td
-            = email.file_name + ".emlx"
-          %td
-            = email.received.in_time_zone("Pacific Time (US & Canada)").to_s(:db)
-          %td
-            = email.from
-          %td
-            = email.subject
+      %table#email-results.table.table-condensed.table-hover.table-bordered
+        %thead
+          %tr
+            %th ID
+            %th File
+            %th Sent
+            %th From/To
+            %th Subject
+        %tbody
+          - @emails.each do |email|
+            %tr(class="email-summary" data-email-id="#{email.id}")
+              %td
+                = email.id
+              %td
+                = link_to email.file_name_with_extension, email_download_path(email)
+              %td.nowrap
+                = email.received.in_time_zone("Pacific Time (US & Canada)").to_s(:db)
+              %td
+                From:
+                = email.from
+                %br
+                To:
+                = email.to
+              %td
+                = email.subject
+  .span6
+    #email-content
 
 

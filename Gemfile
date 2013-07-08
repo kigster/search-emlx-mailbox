@@ -12,6 +12,7 @@ gem 'kaminari'
 gem 'therubyracer'
 gem "less-rails"
 gem "twitter-bootstrap-rails"
+gem 'kaminari-bootstrap'
 
 group :development, :test do
   gem 'sunspot_solr', '2.0.0'

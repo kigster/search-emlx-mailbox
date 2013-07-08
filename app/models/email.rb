@@ -2,7 +2,7 @@ class Email < ActiveRecord::Base
   validates_uniqueness_of :file_name, allow_nil: true
 
   searchable do
-    string :to, :from, :subject
+    text :to, :from, :subject
     text :body do
       body[0..10_000]
     end
@@ -11,4 +11,7 @@ class Email < ActiveRecord::Base
 
   include EmailLoader
 
+  def file_name_with_extension
+    "#{file_name}.#{EmailLoader::EXTENSION}"
+  end
 end

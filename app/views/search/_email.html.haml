@@ -1,0 +1,30 @@
+%h2
+  = link_to email.file_name_with_extension, email_download_path(email)
+
+.email-contents
+  %table#email-contents.table.table-bordered
+    %thead
+    %tbody
+      %tr
+        %td
+          Date:
+          = email.received
+      %tr
+        %td
+          From:
+          = email.from
+      %tr
+        %td
+          To:
+          = email.to
+      %tr
+        %td
+          Subject:
+          = email.subject
+  %pre.pre-scrollable.email-body
+    = email.body
+
+
+
+
+
