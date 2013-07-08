@@ -5,6 +5,17 @@ module EmailLoader
   extend ActiveSupport::Concern
 
   module ClassMethods
+    def progress_bar(size)
+      @progress_bar_enabled = true unless defined?(@progress_bar_enabled)
+      @progress_bar_enabled ?
+          ProgressBar.create(title: 'Email Import', total: size, throttle_rate: 0.1) :
+          nil
+    end
+
+    def disable_progress_bar!
+      @progress_bar_enabled = false
+    end
+
     def from_file(filepath)
       return if File.size(filepath) > MAX_FILE_SIZE
       content = File.read(filepath).encode!('UTF-8', 'UTF-8', :invalid => :replace, :replace => '').unpack("C*").pack("U*")
@@ -36,7 +47,9 @@ module EmailLoader
 
       files = Dir.glob(pattern)
 
-      stats = Struct.new(:imported, :duplicates).new(0, 0)
+      stats = Struct.new(:total, :imported, :duplicates).new(0, 0, 0)
+      stats.total = files.size
+
       pb = self.progress_bar(files.size)
 
       files.each_slice(1000) do |slice|
@@ -60,14 +73,14 @@ module EmailLoader
               next
             end
 
+            stats.imported += 1
             email.save!
           end
         end
       end
 
-      pb.finish if pb
+      puts "Import Complete: #{stats.total} files, #{stats.duplicates} duplicates, #{stats.imported} imported."
 
     end
-
   end
 end
