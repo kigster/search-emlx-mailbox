@@ -1,6 +1,12 @@
 task :reset do
-  Rake::Task["db:reset"].invoke
-  Rake::Task["emails:reset_solr"].invoke
+  begin
+    Rake::Task["sunspot:solr:start"].invoke
+    Rake::Task["db:reset"].invoke
+    sleep 6
+    Rake::Task["emails:reset_solr"].invoke
+  ensure
+    Rake::Task["sunspot:solr:stop"].invoke
+  end
 end
 
 namespace :emails do
