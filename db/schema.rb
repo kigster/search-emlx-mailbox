@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130707042518) do
+ActiveRecord::Schema.define(version: 20130708015623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,8 +24,10 @@ ActiveRecord::Schema.define(version: 20130707042518) do
     t.text     "subject"
     t.text     "body"
     t.datetime "received"
+    t.string   "file_name"
   end
 
+  add_index "emails", ["file_name"], name: "index_emails_on_file_name", using: :btree
   add_index "emails", ["from", "received"], name: "index_emails_on_from_and_received", using: :btree
   add_index "emails", ["received"], name: "index_emails_on_received", using: :btree
 
