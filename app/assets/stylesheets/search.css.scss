@@ -2,18 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 body {
-  font-family: Helvetica;
-  font-size-adjust: 10px;
-  padding: 20px;
 }
 
 table {
-  margin-top: 10px;
-  border: 1px solid gray;
   td {
-    padding: 3px;
-    border: 1px solid lightgrey;
-    margin: 0;
     white-space: nowrap;
     font-size: 12px;
   }

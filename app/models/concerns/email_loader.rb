@@ -1,3 +1,5 @@
+require 'ruby-progressbar'
+
 module EmailLoader
   EXTENSION = "emlx"
   MAX_FILE_SIZE = 10_000_000
@@ -79,7 +81,7 @@ module EmailLoader
         end
       end
 
-      puts "Import Complete: #{stats.total} files, #{stats.duplicates} duplicates, #{stats.imported} imported."
+      puts "Import Complete: #{stats.total} files, #{stats.duplicates} duplicates, #{stats.imported} imported." if pb
 
     end
   end

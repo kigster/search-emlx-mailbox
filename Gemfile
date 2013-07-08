@@ -9,6 +9,8 @@ gem 'sunspot_rails'
 gem 'unicorn'
 gem 'haml-rails'
 gem 'kaminari'
+gem 'therubyracer'
+gem "less-rails"
 gem "twitter-bootstrap-rails"
 
 group :development, :test do

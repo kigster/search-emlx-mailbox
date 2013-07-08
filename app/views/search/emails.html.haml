@@ -13,22 +13,22 @@
     %thead
       %tr
         %th ID
+        %th File
         %th Sent
         %th From
         %th Subject
-        %th Body
     %tbody
       - @emails.each do |email|
         %tr
           %td
             = email.id
           %td
-            = email.received
+            = email.file_name + ".emlx"
+          %td
+            = email.received.in_time_zone("Pacific Time (US & Canada)").to_s(:db)
           %td
             = email.from
           %td
             = email.subject
-          %td
-            = email.body[0..1000]
 
 

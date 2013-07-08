@@ -1,5 +1,3 @@
-require 'ruby-progressbar'
-
 class Email < ActiveRecord::Base
   validates_uniqueness_of :file_name, allow_nil: true
 
