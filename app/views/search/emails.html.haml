@@ -10,13 +10,18 @@
           %input(type="text" autofocus="autofocus" name="query"  class="input-long search-query" placeholder="Matches..." value="#{params[:query]}")
           %p.small
             Use + or - to exclude or include a term, for example "pizza -meat"
-        %input.btn.btn-large.btn-success(type="submit" id="search" value="search")
-        %input.btn.btn-large.btn-warning(type="submit" id="download" name="download" value="download")
+        %div
+          %input.btn.btn-large.btn-success(type="submit" id="search" value="search")
+          %input.btn.btn-large.btn-warning(type="submit" id="download" name="download" value="download")
 
       %p
-        Total docs matched:
         - if @search
           = @search.results.total_count
+        - else
+          0
+        documents matched out of
+        = Email.count
+        documents total.
       %p
         = paginate @search.results if @search
 

@@ -66,7 +66,7 @@ class SearchController < ApplicationController
     end
     block.call export_file_name, zip_path
   ensure
-    FileUtils.rm_rf temp_dir if temp_dir rescue nil
+    #FileUtils.rm_rf temp_dir if temp_dir rescue nil
   end
 
 end
