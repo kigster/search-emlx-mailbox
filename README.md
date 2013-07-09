@@ -25,17 +25,19 @@ messages, and then sends it to the browser.
 
 - Rails 4
 - Ruby 2.0
+- PostgreSQL is the default database engine, but you can change it in database.yml
 
 ## Usage
 
 1. You should have a directory containing a bunch of *.emlx files you want import.  This could be a flat directory, or a hierarchy.
-2. Run ```bundle install```
-3. Run ```rake db:create && rake db:migrate```
-4. Run ```bundle exec foreman start``` to start the application and Solr
-5. Run ```bundle exec rake emails:load:directory["/top/level/directory/with/your/files"]```
-6. Connect to http://localhost:8080/
-7. Search, refine your search, hover over matching emails, search again.
-8. Results of any search query can be exported as a zip file and downloaded.
+2. Checkout the app
+3. Run ```bundle install```
+4. Run ```rake db:create && rake db:migrate```
+5. Run ```foreman start``` to start the application and Solr (in development mode)
+6. Run ```rake emails:load:directory["/top/level/directory/with/your/files"]```.  This should display a progress bar, as files are being imported.
+7. Connect to http://localhost:8080/
+8. Search, refine your search, hover over matching emails to view them, search again.
+9. Results of any search query can be exported as a zip file and downloaded.
 
 ### Screen Shot
 
@@ -45,7 +47,7 @@ Below is a sample screen shot with the Rails application running.
 
 ## Testing
 
-To run the tests either run ```rspec``` (bypasses Solr tests), or to test with Solr running run:
+To run the tests either run ```rspec``` (bypasses Solr tests), or to test with Solr enabled, run:
 
 ```ruby
 TESTS_SOLR=true rspec
@@ -61,5 +63,8 @@ TESTS_SOLR=true rspec
 
 ## Author
 
-Konstantin Gredeskoul, @kig, http://github.com/kigster
+Konstantin Gredeskoul, http://github.com/kigster
 
+## License
+
+See the LICENSE file.
