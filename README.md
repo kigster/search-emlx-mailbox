@@ -16,6 +16,9 @@ from a directory to the database, and then uses Apache Solr (via Sunspot gem) to
 4. Connect to http://localhost:8080/emails/search
 5. Search.
 
+![Sample Screen Shot](https://raw.github.com/kigster/email-search/master/doc/email_search_ss.png "Email Search App opened")
+
+
 ## Testing
 
 To run the tests either run ```rspec``` (bypasses Solr tests), or to test with Solr running run:
@@ -35,3 +38,4 @@ TESTS_SOLR=true rspec
 ## Author
 
 Konstantin Gredeskoul, @kig, http://github.com/kigster
+
