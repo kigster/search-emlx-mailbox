@@ -12,12 +12,19 @@ I had to dig through a whole lot (tens of thousands) of very old email files, an
 and using ```grep``` and ```find``` quickly became complete nuisance. I wanted to search case insensitively,
 including terms, excluding terms, using full text search and natural language capabilities of modern search engines.
 
-And then I thought, hell, maybe someone else will need to do the same sometimes.  So I decided to make it properly,
-and make it open source.
+And then I thought, hell, maybe someone else will need to do this too.  So I decided to make it a "proper" app,
+write some tests, and open source it.
 
-This simple Rails 4 / Ruby 2.0 app allows sophisticated full-text searches powered by Solr, and offers a
-convenient screen viewport for scanning through email content that match.  You can export emails back, that match
-a particular search criteria, using the "Download" button, which creates a zip file of matching emails.
+The result is a rather simple but effective Rails app, that supports sophisticated full-text searches
+powered by Solr (powered by Sunspot), and offers a convenient screen viewport for scanning through email
+content that match search, with a UI based on Twitter Bootstrap.  You can then export the results that match
+a particular search criteria using the "Download" button, which creates a zip file that includes matching email
+messages, and then sends it to the browser.
+
+## Dependencies
+
+- Rails 4
+- Ruby 2.0
 
 ## Usage
 
