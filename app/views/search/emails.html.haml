@@ -1,10 +1,10 @@
 .row-fluid
-  .span7
+  .span6
     .email-search
       %form#email-search-form(class="well form-search" action="#{emails_search_path}")
         .form-group
-          =date_field_tag :date_from, params[:date_from], :as => :string
-          =date_field_tag :date_to, params[:date_to], :as => :string
+          =date_field_tag :date_from, params[:date_from], :as => :string, placeholder: "MM/DD/YYYY From"
+          =date_field_tag :date_to, params[:date_to], :as => :string, placeholder: "MM/DD/YYYY To"
         =select_tag(:fields, options_for_select(%w(from to subject body), params[:fields]), { class: "field-select", multiple: true, size: 4 })
         .form-group
           %input(type="text" autofocus="autofocus" name="query"  class="input-long search-query" placeholder="Matches..." value="#{params[:query]}")
@@ -36,7 +36,7 @@
           - @emails.each do |email|
             %tr(class="email-summary" data-email-id="#{email.id}")
               %td
-                = link_to email.file_name_with_extension, email_download_path(email)
+                = link_to email.file_name, email_download_path(email)
               %td.nowrap
                 = email.received.in_time_zone("Pacific Time (US & Canada)").to_date.to_s if email.received.present?
               %td
@@ -51,7 +51,7 @@
       %p
         = paginate @search.results if @search
 
-  .span5
+  .span6
     #email-content
 
 

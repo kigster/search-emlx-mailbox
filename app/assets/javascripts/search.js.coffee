@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).on "mouseenter", ".email-summary td", (e) ->
+$(document).on "mouseover", ".email-summary td", (e) ->
   e.preventDefault()
   parent = $(e.target).closest(".email-summary")
   email_id = parent.data('email-id')

@@ -23,7 +23,7 @@ class SearchController < ApplicationController
 
   def download
     @email = Email.find(params[:id])
-    send_data @email.full_body, :filename => @email.file_name_with_extension
+    send_data @email.full_body, :filename => @email.file_name
   end
 
   private
@@ -57,8 +57,8 @@ class SearchController < ApplicationController
         params[:page] = page
         search = search_solr
         search.results.each do |email|
-          Rails.logger.info("adding file #{email.file_name_with_extension}")
-          zipfile.get_output_stream(email.file_name_with_extension) do |io|
+          Rails.logger.info("adding file #{email.file_name}")
+          zipfile.get_output_stream(email.file_name) do |io|
             io.write email.full_body
           end
         end

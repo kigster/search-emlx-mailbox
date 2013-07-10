@@ -1,6 +1,6 @@
 module SampleDataHelper
   def load_fixture_email
-    email = Email.from_file("spec/fixtures/763983.emlx")
+    email = EmailSearch::AsciiLoader.new("spec/fixtures/763983.emlx").email
     email.save!
     email
   end

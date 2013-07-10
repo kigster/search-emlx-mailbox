@@ -9,12 +9,6 @@ class Email < ActiveRecord::Base
     time :received
   end
 
-  include EmailLoader
-
-  def file_name_with_extension
-    "#{file_name}.#{EmailLoader::EXTENSION}"
-  end
-
   def full_body
     header + "\n\n" + body
   end

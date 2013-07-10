@@ -15,13 +15,13 @@ namespace :emails do
   end
 
   namespace :load do
-    desc "Load all emails from a directory hierarchy"
-    task :directory, [:directory] => [:environment] do |t, args|
-      Email.create_from_dir args[:directory]
+    desc "Load all emails from a directory hierarchy, ie: rake emails:load:directory['/home/blah/emails','emlx']"
+    task :directory, [:directory, :extension] => [:environment] do |t, args|
+      EmailSearch::Importer.new(args[:directory], file_extension: args[:extension]).import!
     end
     desc "Load a single email by file name"
     task :file, [:file] => [:environment] do |t, args|
-      Email.from_file args[:file]
+      EmailSearch::AsciiLoader.new(args[:file]).email.save!
     end
   end
 end

@@ -3,8 +3,9 @@
 [![Build status](https://secure.travis-ci.org/kigster/email-search.png)](http://travis-ci.org/kigster/email-search)
 
 Email Search is a simple rails application, whose goal is to provide fast and effective search across many
-email messages in the "*.emlx" format (used by Apple Mail).  Application provides a way to import these messages
-from a directory to the database, and then uses Apache Solr (via Sunspot gem) to search imported messages.
+email messages saved in a standard ASCII text format, one file per message, where mail header and the body are separated by two newlines.
+For example, *.emlx format used by Apple Mail works great.  This app provides an easy way to import these messages
+from a directory to the database, and then uses Apache Solr to search imported messages using full text search.
 
 ## Why?
 
@@ -32,9 +33,9 @@ messages, and then sends it to the browser.
 1. You should have a directory containing a bunch of *.emlx files you want import.  This could be a flat directory, or a hierarchy.
 2. Checkout the app
 3. Run ```bundle install```
-4. Run ```rake db:create && rake db:migrate```
+4. Run ```rake reset``` (this rebuilds database, and re-creates Solr index)
 5. Run ```foreman start``` to start the application and Solr (in development mode)
-6. Run ```rake emails:load:directory["/top/level/directory/with/your/files"]```.  This should display a progress bar, as files are being imported.
+6. Run ```rake 'emails:load:directory[/top/level/directory/with/your/files,extension]```. For example, ```rake 'emails:load:directory[/Users/kig/mail,emlx]```. This should display a progress bar, as files are being imported and indexed by Solr.
 7. Connect to http://localhost:8080/
 8. Search, refine your search, hover over matching emails to view them, search again.
 9. Results of any search query can be exported as a zip file and downloaded.
