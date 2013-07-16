@@ -3,6 +3,7 @@ class Email < ActiveRecord::Base
 
   searchable do
     text :to, :from, :subject
+    string :file_name
     text :body do
       body[0..10_000]
     end

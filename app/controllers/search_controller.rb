@@ -31,8 +31,12 @@ class SearchController < ApplicationController
   def search_solr
     if params[:query].present?
       Email.search do
-        fulltext params[:query] do
-          fields *params[:fields] if params[:fields]
+        if params[:query] =~ /\.(emlx|txt)$/
+           with :file_name, params[:query]
+        else
+           fulltext params[:query] do
+             fields *params[:fields] if params[:fields]
+           end
         end
         with(:received).greater_than(params[:date_from]) if params[:date_from].present?
         with(:received).less_than(params[:date_to]) if params[:date_to].present?
