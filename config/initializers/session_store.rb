@@ -1,3 +1,3 @@
 # Be sure to restart your server when you modify this file.
 
-Docsearch::Application.config.session_store :cookie_store, key: '_docsearch_session'
+SearchMailboxes::Application.config.session_store :cookie_store, key: '_docsearch_session'

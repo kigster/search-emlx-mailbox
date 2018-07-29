@@ -4,15 +4,15 @@ module EmailSearch
   class Importer
     attr_accessor :folder, :skip_duplicate_file_names, :skip_duplicate_content, :file_extension
 
-    def initialize folder,
-        skip_duplicate_file_names: true,
-        skip_duplicate_content: true,
-        file_extension: DEFAULT_EXTENSION
+    def initialize(folder,
+                   skip_duplicate_file_names: true,
+                   skip_duplicate_content: true,
+                   file_extension: DEFAULT_EXTENSION)
 
-      self.folder = folder
-      self.skip_duplicate_content = skip_duplicate_content
+      self.folder                    = folder
+      self.skip_duplicate_content    = skip_duplicate_content
       self.skip_duplicate_file_names = skip_duplicate_file_names
-      self.file_extension = file_extension
+      self.file_extension            = file_extension
     end
 
     class << self
@@ -21,7 +21,7 @@ module EmailSearch
       end
 
       def create_progress_bar(size)
-       !defined?(@progress_bar_enabled) || @progress_bar_enabled ?
+        !defined?(@progress_bar_enabled) || @progress_bar_enabled ?
             ProgressBar.create(title: 'Email Import', total: size, throttle_rate: 0.1) :
             nil
       end
@@ -29,7 +29,7 @@ module EmailSearch
     end
 
     def import!
-      pattern = File.join(folder, "**", "*.#{file_extension}")
+      pattern = File.join(folder, '**', "*.#{file_extension}")
       files   = Dir.glob(pattern)
       stats   = Struct.new(:total, :imported, :duplicates).new(0, 0, 0)
 
@@ -45,7 +45,7 @@ module EmailSearch
             next unless email
 
             if skip_duplicate_content
-              duplicate = Email.where("received = ? and \"from\" = ? and \"to\" = ? and subject = ?",
+              duplicate = Email.where('received = ? and "from" = ? and "to" = ? and subject = ?',
                                       email.received, email.from, email.to, email.subject).first
               if duplicate && duplicate.body[0..1000].eql?(email.body[0..1000])
                 stats.duplicates += 1

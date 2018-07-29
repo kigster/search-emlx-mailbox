@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Docsearch::Application.load_tasks
+SearchMailboxes::Application.load_tasks
