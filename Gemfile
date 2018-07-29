@@ -1,21 +1,25 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+gem 'font-awesome-rails'
 gem 'rails', '~> 5.2.0'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'libv8'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'jquery-rails'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'ruby-progressbar'
 gem 'sunspot', :git => 'https://github.com/sunspot/sunspot.git'
 gem 'sunspot_rails'
 gem 'haml-rails'
 gem 'kaminari'
+gem 'sprockets'
+gem "therubyracer", '~> 0.12.1'
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem 'twitter-bootstrap-rails'
 gem 'kaminari-bootstrap'
 gem 'rubyzip'

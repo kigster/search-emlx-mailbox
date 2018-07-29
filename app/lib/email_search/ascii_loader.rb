@@ -1,7 +1,8 @@
 module EmailSearch
-  class AsciiLoader < Struct.new(:path, :email)
-    def initialize(*args)
-      super
+  class AsciiLoader
+    attr_accessor :path, :email
+    def initialize(file_path)
+      self.path = file_path
       return if File.size(path) > EmailSearch::MAX_FILE_SIZE
       content = File.read(path).encode!('UTF-8', 'UTF-8', :invalid => :replace, :replace => '').unpack("C*").pack("U*")
 
