@@ -1,5 +1,5 @@
 module EmailSearch
-  DEFAULT_EXTENSION = "emlx"
+  DEFAULT_EXTENSION = 'emlx'
   MAX_FILE_SIZE = 10_000_000
 end
 
