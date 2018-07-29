@@ -1,6 +1,6 @@
 ## Email Search 
 
-[![Build status](https://secure.travis-ci.org/kigster/email-search.png)](http://travis-ci.org/kigster/email-search)
+[![Build status](https://secure.travis-ci.org/kigster/search-emlx-mailbox.png)](http://travis-ci.org/kigster/search-emlx-mailbox)
 
 Email Search is a simple rails application, whose goal is to provide fast and effective search across many
 email messages saved in a standard ASCII text format, one file per message, where mail header and the body are separated by two newlines.
