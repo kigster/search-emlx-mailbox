@@ -23,7 +23,7 @@ class SearchController < ApplicationController
 
   def download
     @email = Email.find(params[:id])
-    send_data @email.full_body, :filename => @email.file_name
+    send_data @email.full_body, filename: @email.file_name, type: 'text/plain', :disposition => 'inline'
   end
 
   private

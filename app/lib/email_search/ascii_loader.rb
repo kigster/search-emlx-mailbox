@@ -3,7 +3,9 @@ module EmailSearch
     attr_accessor :path, :email
     def initialize(file_path)
       self.path = file_path
-      return if File.size(path) > EmailSearch::MAX_FILE_SIZE
+      size = File.size(path)
+      return if size > EmailSearch::MAX_FILE_SIZE || size < 10
+
       content = File.read(path).encode!('UTF-8', 'UTF-8', :invalid => :replace, :replace => '').unpack("C*").pack("U*")
 
       email = Email.new

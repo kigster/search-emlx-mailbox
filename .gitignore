@@ -27,3 +27,4 @@ public/assets/*
 # Latest rvm renames .rvmrc to these two
 .ruby-gemset
 .ruby-version
+data/
