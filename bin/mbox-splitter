@@ -1,0 +1,103 @@
+#!/usr/bin/env ruby
+require 'colored2'
+require 'ruby-progressbar'
+
+if ARGV.empty?
+  puts 'Usage: mbox-splitter mbox-file [mbox-file ... ]'
+  exit 0
+end
+
+module EmailSearch
+  def self.debug(msg)
+    puts 'INFO > '.bold.blue + msg + "\n"
+  end
+
+  def self.error(msg)
+    puts 'ERR  > '.bold.red + msg.yellow + "\n"
+  end
+
+  class MBoxFile
+    attr_accessor :mbox_file,
+                  :mbox_path,
+                  :current_file,
+                  :progress_bar,
+                  :counter
+
+    def initialize(file)
+      self.counter   = 0
+      self.mbox_file = file
+      self.mbox_path = File.dirname(mbox_file) if mbox_file
+
+      EmailSearch.debug "mbox file = #{mbox_file.bold.yellow}"
+      EmailSearch.debug "mbox path = #{mbox_path.bold.green}"
+
+      unless File.exist?(mbox_file)
+        EmailSearch.error "File #{mbox_file} does not exist!"
+        return
+      end
+
+
+      mbox_basename     = File.basename(mbox_file)
+      self.progress_bar = ::ProgressBar.create(title:         "#{sprintf '%20s', mbox_basename}".bold.yellow,
+                                               total:         ::File.size(mbox_file),
+                                               throttle_rate: 0.1)
+    end
+
+    def process!
+      open
+      progress_bar.start
+      File.open(mbox_file, 'r').each do |line|
+        progress_bar.progress += line.size
+        reopen if line[/^From /]
+        write(line)
+      end
+      close
+      progress_bar.finish
+      EmailSearch.debug "Extracted #{counter.to_s.bold.yellow} emails from file #{mbox_file.bold.blue}"
+    end
+
+    def reopen
+      close
+      self.counter += 1
+      open
+    end
+
+    def open
+      self.current_file.close rescue nil unless current_file&.closed?
+      self.current_file = ::File.open("#{mbox_path}/#{counter}.elmx", 'w')
+    end
+
+    def close
+      self.current_file&.close
+    end
+
+    def write(*args)
+      current_file.print(args.join)
+    end
+  end
+
+
+  class CLI
+    attr_accessor :argv
+
+    def initialize(*args)
+      self.argv = args
+    end
+
+    def execute
+      EmailSearch.debug "processing #{argv.size} mbox files..."
+
+      argv.each do |file|
+        EmailSearch::MBoxFile.new(file).process!
+      end
+
+      EmailSearch.debug 'processing completed.'
+    end
+  end
+
+
+end
+
+EmailSearch::CLI.new(*ARGV).execute
+
+
