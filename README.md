@@ -29,21 +29,22 @@ powered by Solr search engine (which itself is powered by Sunspot ruby gem). It 
 
 You must first:
 
- 1. Clone the app using git (on a Mac, it requires running `xcode-select -install` first).
+ 1. Clone the app using git (on a Mac, it requires running `xcode-select --install` first to get `git` and other dev tools).
+ 
  2. Then `cd` into the app foler and run:
  
-        ```bash
-        # basic dependencies
-        $ brew install rbenv ruby-build postgres
-        $ brew services start postgres
+  ```bash
+    # basic dependencies
+    $ brew install rbenv ruby-build postgres
+    $ brew services start postgres
         
-        # if you don't have a recent ruby
-        $ rbenv install 2.5.1
-        $ gem install bundler
-         
-        $ bundle install   # to install all dependencies
-        $ rake reset       # to reset database and Solr
-        ```
+    # if you don't have a recent ruby
+    $ rbenv install 2.5.1
+    $ gem install bundler
+     
+    $ bundle install   # to install all dependencies
+    $ rake reset       # to reset database and Solr
+  ``` 
         
  3. The last step is to start the application using Foreman:        
 
