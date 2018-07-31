@@ -54,6 +54,12 @@ module EmailSearch
       puts "\t#{stats.duplicates.to_s.blue.bold} duplicates"
       puts "\t#{stats.imported.to_s.green.bold} imported"
       puts "\t#{stats.errors.to_s.red.bold} errors."
+
+      puts 'Reindexing Solr....'
+      Email.reindex
+      Sunspot.commit
+    rescue StandardError => e
+      puts 'ERROR: '.bold.red + e.message
     end
 
     private

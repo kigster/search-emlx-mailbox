@@ -7,7 +7,10 @@ class CreateEmails < ActiveRecord::Migration[5.2]
       t.text :cc
       t.text :subject
       t.text :body
+      t.text :file_name
       t.datetime :received
+
+      t.timestamp
     end
   end
 end

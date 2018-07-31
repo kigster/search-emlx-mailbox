@@ -1,9 +1,14 @@
+require 'colored2'
+
 module EmailSearch
   class AsciiLoader
     attr_accessor :path, :email
+
     def initialize(file_path)
       self.path = file_path
+
       size = File.size(path)
+
       return if size > EmailSearch::MAX_FILE_SIZE || size < 10
 
       content = File.read(path).encode!('UTF-8', 'UTF-8', :invalid => :replace, :replace => '').unpack("C*").pack("U*")
@@ -20,7 +25,7 @@ module EmailSearch
       self.email = email
       self
     rescue Exception => e
-      puts "exception processing file #{path}"
+      puts "exception processing file #{path}, #{e.message.red} @\n#{e.backtrace[1].yellow}"
       raise e
     end
 

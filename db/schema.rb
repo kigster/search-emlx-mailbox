@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2013_07_08_015623) do
+ActiveRecord::Schema.define(version: 2013_07_07_042518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,11 +22,11 @@ ActiveRecord::Schema.define(version: 2013_07_08_015623) do
     t.text "cc"
     t.text "subject"
     t.text "body"
+    t.text "file_name"
     t.datetime "received"
-    t.string "file_name"
-    t.index ["file_name"], name: "index_emails_on_file_name"
-    t.index ["from", "received"], name: "index_emails_on_from_and_received"
-    t.index ["received"], name: "index_emails_on_received"
+    t.index ["from", "received"], name: "index_emails_on_from_and_received", where: "(\"from\" IS NOT NULL)"
+    t.index ["received", "from", "to", "subject"], name: "index_emails_on_received_and_from_and_to_and_subject", where: "(received IS NOT NULL)"
+    t.index ["to", "received"], name: "index_emails_on_to_and_received", where: "(\"to\" IS NOT NULL)"
   end
 
 end

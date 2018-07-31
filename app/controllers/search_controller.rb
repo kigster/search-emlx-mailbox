@@ -1,3 +1,4 @@
+
 class SearchController < ApplicationController
 
   def emails
@@ -23,7 +24,9 @@ class SearchController < ApplicationController
 
   def download
     @email = Email.find(params[:id])
-    send_data @email.full_body, filename: @email.file_name, type: 'text/plain', :disposition => 'inline'
+    send_data @email.full_body,
+              filename: @email.file_name,
+              type: 'application/octet-stream'
   end
 
   private
@@ -49,13 +52,16 @@ class SearchController < ApplicationController
   end
 
   def generate_zip(&block)
-    export_file_name = "emails-export.zip"
+    export_file_name = 'emails-export.zip'
     page = 0
     params[:per_page] = 100
     temp_dir = Dir.mktmpdir
     zip_path = File.join(temp_dir, export_file_name)
     Rails.logger.info("zip file location is #{zip_path}")
-    Zip::ZipFile::open(zip_path, true) do |zipfile|
+
+    require 'zip/file'
+
+    ::Zip::ZipFile::open(zip_path, true) do |zipfile|
       begin
         page += 1
         params[:page] = page
