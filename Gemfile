@@ -24,6 +24,7 @@ gem 'twitter-bootstrap-rails'
 gem 'kaminari-bootstrap'
 gem 'rubyzip'
 gem 'colored2'
+gem 'tty-table'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
