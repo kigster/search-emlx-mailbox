@@ -1,6 +1,7 @@
 ## Email Search 
 
 [![Build status](https://secure.travis-ci.org/kigster/search-emlx-mailbox.png)](http://travis-ci.org/kigster/search-emlx-mailbox)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkigster%2Fsearch-emlx-mailbox.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkigster%2Fsearch-emlx-mailbox?ref=badge_shield)
 
 Email Search is a simple rails application, whose goal is to provide fast and effective search across many email messages saved in a standard ASCII text format, one file per message, where mail header and the body are separated by two newlines.
 
@@ -150,3 +151,6 @@ Konstantin Gredeskoul, http://github.com/kigster
 
 See the LICENSE file.
 
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkigster%2Fsearch-emlx-mailbox.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkigster%2Fsearch-emlx-mailbox?ref=badge_large)
